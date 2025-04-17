@@ -6,6 +6,8 @@ const Button = ({
   className,
   type,
   isLoading,
+  isDisabled,
+  size,
   children,
   isPrimary,
   isSecondary,
@@ -21,6 +23,20 @@ const Button = ({
   if (isSecondary) classNames.push('bg-violet-700');
   if (isDanger) classNames.push('bg-red-600');
   if (isBlock) classNames.push('block w-full py-2 px-4');
+  if (size === 'large') classNames.push('px-3 py-1 text-sm');
+  if (size === 'medium') classNames.push('px-4 py-2 text-base');
+  if (size === 'large') classNames.push('px-6 py-3 text-lg');
+
+  if (isDisabled) {
+    return (
+      <span className={classNames.join(' ')}>
+        <div className="flex justify-center items-center">
+          {children}
+          {rightIcon && <i className={`bx ${rightIcon} text-xl ml-2 mt-1`}></i>}
+        </div>
+      </span>
+    );
+  }
 
   if (isLoading) {
     return (
