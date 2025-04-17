@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-// @ts-expect-error
 import path from 'path';
+import { defineConfig } from 'vite';
+// @ts-expect-error
 
 // https://vite.dev/config/
+// @ts-ignore
 export default defineConfig({
-  plugins: [react()],
+  plugins: [tailwindcss(), react()],
   resolve: {
     alias: {
       // @ts-expect-error
