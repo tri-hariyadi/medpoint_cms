@@ -31,9 +31,12 @@ export default tseslint.config(
       'import/resolver': {
         node: {
           paths: ['./'],
-          extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts'],
+          extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts', '.png'],
           alias: {
+            utils: 'src/utils/*',
+            assets: 'src/assets/*',
             components: 'src/components/*',
+            store: 'src/store/*',
             pages: 'src/pages/*'
           }
         },
@@ -73,7 +76,7 @@ export default tseslint.config(
         }
       ],
       'import/no-named-as-default': 'off',
-      'import/no-unresolved': ['error', { ignore: ['^@'] }],
+      'import/no-unresolved': ['error', { ignore: ['^@'], caseSensitive: true }],
       'import/named': 'off',
       'import/newline-after-import': 'error',
       'import/exports-last': 'off',

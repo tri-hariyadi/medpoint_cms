@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { CSSProperties, MouseEventHandler } from 'react';
 
 export interface ButtonProps {
   type?: 'link';
@@ -7,11 +7,10 @@ export interface ButtonProps {
   size?: 'small' | 'medium' | 'large';
   children?: string;
   className?: string;
-  isPrimary?: boolean;
-  isSecondary?: boolean;
-  isDanger?: boolean;
+  variant?: 'primary' | 'secondary' | 'danger';
   href?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   isBlock?: boolean;
   rightIcon?: string;
+  style?: CSSProperties;
 }

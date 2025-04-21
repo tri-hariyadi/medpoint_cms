@@ -2,5 +2,45 @@
 @import 'boxicons/css/boxicons.min.css';
 
 @theme {
+    --font-pjs: PlusJakartaSans;
+    --font-pjs-bold: PlusJakartaSansBold;
+    --font-pjs-semi-bold: PlusJakartaSansSemiBold;
+    --font-pjs-extra-bold: PlusJakartaSansExtraBold;
+    --font-poppins: Poppins;
     --color-button-primary: #5600E9
+}
+
+@font-face {
+    font-family: 'PlusJakartaSans';
+    src: url("./assets/fonts/PlusJakartaSans-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PlusJakartaSansExtraBold';
+    src: url("./assets/fonts/PlusJakartaSans-ExtraBold.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PlusJakartaSansBold';
+    src: url("./assets/fonts/PlusJakartaSans-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PlusJakartaSansSemiBold';
+    src: url("./assets/fonts/PlusJakartaSans-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
