@@ -25,7 +25,10 @@
     "baseUrl": ".",
     "paths": {
       "components": ["./src/components/index.ts"],
-      "pages/*": ["./src/pages/*"]
+      "pages/*": ["./src/pages/*"],
+      "utils/*": ["./src/utils/*"],
+      "assets/*": ["./src/assets/*"],
+      "store/*": ["./src/store/*"],
     }
   },
   "include": ["src"]

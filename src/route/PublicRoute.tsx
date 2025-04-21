@@ -9,16 +9,16 @@ interface PrivateRouteProps {
   children: ReactNode;
 }
 
-const PrivateRoute = ({ children }: PrivateRouteProps) => {
+const PublicRoute = ({ children }: PrivateRouteProps) => {
   const { session } = useSession();
 
   if (session?.isLoading) return <Loading />;
 
-  if (!session?.token && !session?.isLoading) {
-    return <Navigate to="/login" replace />;
+  if (session?.token && !session?.isLoading) {
+    return <Navigate to="/" replace />;
   }
 
   return children;
 };
 
-export default PrivateRoute;
+export default PublicRoute;
