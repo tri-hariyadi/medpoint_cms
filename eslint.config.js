@@ -21,6 +21,7 @@ export default tseslint.config(
       prettier: eslintPluginPrettier,
       import: eslintPluginImport
     },
+    ignores: ['vite.config.ts'],
     settings: {
       react: {
         version: 'detect'
