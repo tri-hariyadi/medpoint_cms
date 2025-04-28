@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router';
-import { useSession } from 'store/context';
 import Swal from 'sweetalert2';
 
 import MediverseImage from 'assets/login_image.png';
 import MediverseLogo from 'assets/medivers_logo.png';
 import MediverseLogoDark from 'assets/medivers_logo_dark.png';
 import { Button, Input } from 'components';
+import { useSession } from 'store/context';
 import supabaseClient from 'utils/supabaseClient.ts';
 
 const Login = () => {
