@@ -31,8 +31,10 @@ jobs:
       - name: Extract changelog for current tag
         id: changelog
         run: |
-          TAG=${{ steps.get_tag.outputs.tag }}
+          TAG=${steps.get_tag.outputs.tag}
           CHANGELOG=$(awk "/## ${TAG}/,/^## /" CHANGELOG.txt | sed '1d;$d' || true)
+          echo "TAG is ${TAG}"
+          echo "CHANGELOG is ${{ env.CHANGELOG }}"
           echo "CHANGELOG<<EOF" >> $GITHUB_ENV
           echo "$CHANGELOG" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
