@@ -28,35 +28,12 @@ jobs:
         id: get_tag
         run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
 
-      - name: Extract changelog for current tag
-        id: changelog
-        run: |
-          TAG=${{steps.get_tag.outputs.tag}}
-          echo "TAG is ${TAG}"
-          echo "Looking for changelog for tag: $TAG"
-          # Cek apakah ada tag selanjutnya
-          NEXT_LINE=$(grep -n "## ${TAG}" CHANGELOG.txt | cut -d: -f1)
-          if [ -z "$NEXT_LINE" ]; then
-          echo "Tag ${TAG} not found in CHANGELOG.txt"
-          exit 1
-          fi
-          # Ambil isi mulai dari tag hingga sebelum tag berikutnya
-          CHANGELOG=$(awk -v tag="## ${TAG}" '
-          $0 == tag {found=1; next}
-          found && /^## / {exit}
-          found {print}
-          ' CHANGELOG.txt)
-          echo "CHANGELOG is ${CHANGELOG}"
-          echo "CHANGELOG<<EOF" >> $GITHUB_ENV
-          echo "$CHANGELOG" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.get_tag.outputs.tag }}
           name: "Release ${{ steps.get_tag.outputs.tag }}"
-          body_path: ${{ env.CHANGELOG }}
+          body_path: CHANGELOG.txt
           draft: false
           prerelease: false
         env:
