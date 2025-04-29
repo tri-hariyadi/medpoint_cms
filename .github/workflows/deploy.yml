@@ -25,6 +25,8 @@ jobs:
           body: "Changelog for version ${{ github.ref_name }}"
           draft: false
           prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
