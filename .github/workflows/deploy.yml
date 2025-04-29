@@ -31,7 +31,7 @@ jobs:
       - name: Print tag
         run: |
           echo "Latest tag is ${{ steps.get_tag.outputs.tag }}"
-          ${{ github.ref_name }}
+          echo ${{ github.ref_name }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
