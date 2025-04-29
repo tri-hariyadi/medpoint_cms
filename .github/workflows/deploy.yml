@@ -18,6 +18,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: "Release ${{ github.ref_name }}"
+          body: "Changelog for version ${{ github.ref_name }}"
+          draft: false
+          prerelease: false
+
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
