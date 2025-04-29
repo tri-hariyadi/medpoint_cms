@@ -3,6 +3,11 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
+  workflow_run:
+    workflows:
+      - Continuous Integration
+    types:
+      - completed
   push:
     branches:
       - master
@@ -12,6 +17,7 @@ on:
 
 jobs:
   build-and-deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
