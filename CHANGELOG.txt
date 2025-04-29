@@ -1,0 +1,1 @@
+- Add font dashboard in dashboard page
