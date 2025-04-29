@@ -21,11 +21,13 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
+      - name: Remove env
+        run: |
+          rm -rf .vercel
+          rm -rf .env
+
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: remove env
-        run: rm -rf .env
 
 #      - name: Inject Supabase URL and Anon Key manually
 #        run: |
