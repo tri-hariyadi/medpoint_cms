@@ -28,12 +28,23 @@ jobs:
         id: get_tag
         run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
 
+      - id: changelog
+        run: |
+          TAG=${{steps.get_tag.outputs.tag}}
+          LOG=$(awk -v tag="## ${TAG}" '
+            $0 == tag {found=1; next}
+            found && /^## / {exit}
+            found {print}
+          ' CHANGELOG.txt | sed ':a;N;$!ba;s/\n/\\n/g')
+          echo "log=$LOG" >> $GITHUB_OUTPUT
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.get_tag.outputs.tag }}
           name: "Release ${{ steps.get_tag.outputs.tag }}"
-          body_path: CHANGELOG.txt
+#          body_path: CHANGELOG.txt
+          body: ${{ steps.changelog.outputs.log }}
           draft: false
           prerelease: false
         env:
