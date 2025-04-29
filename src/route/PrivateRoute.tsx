@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 
 import { Navigate } from 'react-router';
-import { useSession } from 'store/context';
 
 import { Loading } from 'components';
+import { useSession } from 'store/context';
 
 interface PrivateRouteProps {
   children: ReactNode;

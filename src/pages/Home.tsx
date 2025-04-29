@@ -1,8 +1,8 @@
-import { useSession } from 'store/context';
 import Swal from 'sweetalert2';
 
 import MediverseLogo from 'assets/medivers_logo.png';
 import { Button } from 'components';
+import { useSession } from 'store/context';
 import supabaseClient from 'utils/supabaseClient.ts';
 
 const Home = () => {
