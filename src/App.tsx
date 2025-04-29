@@ -14,7 +14,7 @@ function App() {
   const { getSession } = useSession();
 
   useEffect(() => {
-    getSession();
+    getSession()
   }, []);
 
   return (
