@@ -22,12 +22,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Get latest tag
+        id: get_tag
+        run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+
+      - name: Print tag
+        run: echo "Latest tag is ${{ steps.get_tag.outputs.tag }}"
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
           name: "Release ${{ github.ref_name }}"
-          body: "Changelog for version ${{ github.ref_name }}"
+          body_path: ${{ github.workspace }}-CHANGELOG.txt
           draft: false
           prerelease: false
         env:
