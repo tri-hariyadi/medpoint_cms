@@ -42,6 +42,9 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div className="p-4">
+        <h2 className="mt-2 font-pjs-bold text-2xl">Dashboard Mediverse</h2>
+      </div>
     </div>
   );
 };
