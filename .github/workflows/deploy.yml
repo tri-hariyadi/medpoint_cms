@@ -28,20 +28,20 @@ jobs:
         id: get_tag
         run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
 
-      - name: Read changelog for current tag
+      - name: Extract changelog for current tag
         id: changelog
         run: |
-          TAG="${{ github.ref_name }}"
-          BODY=$(awk "/## $TAG/{flag=1;next}/## /{flag=0}flag" CHANGELOG.txt)
-          echo "body<<EOF" >> $GITHUB_OUTPUT
-          echo "$BODY" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          TAG=${GITHUB_REF##*/}
+          CHANGELOG=$(awk "/## ${TAG}/,/^## /" CHANGELOG.txt | sed '1d;$d' || true)
+          echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+          echo "$CHANGELOG" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Print tag
         run: |
           echo "Latest tag is ${{ steps.get_tag.outputs.tag }}"
           echo ${{ github.ref_name }}
-          echo ${{ steps.changelog.outputs.tag }}
+          echo ${{ env.CHANGELOG }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
